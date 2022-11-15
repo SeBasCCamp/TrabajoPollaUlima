@@ -17,21 +17,23 @@ import kotlinx.coroutines.withContext
 fun detailScreen(
 ){
     val navController = rememberNavController()
-    val listaFinal = remember{
+    val listaFin = remember{
         mutableStateListOf<Team>()
     }
     LaunchedEffect(key1 = true){
 
-        val listaC = withContext(Dispatchers.IO){
+        val listaD = withContext(Dispatchers.IO){
             HTTPManager.instance.getTeams()
         }
-        if(listaC != null){
-            listaC.forEach{
-                listaFinal.add(it)
+        if(listaD != null){
+            listaD.forEach{
+                listaFin.add(it)
             }
         }else{
             Log.e("MainScreen","Error de comunicacion con el servicio")
         }
     }
-    ListaTeams(team = listaFinal)
+    ListaTeams(team = listaFin)
 }
+
+
